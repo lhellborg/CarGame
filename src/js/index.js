@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import NrImageButton from './Images.js';
+import Game from './Images.js';
 
 
 
 ReactDOM.render(
-	<NrImageButton />,
+	<Game />,
   document.getElementById('app')
 );
