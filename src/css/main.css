@@ -1,0 +1,229 @@
+body {
+	max-width: 100%;
+	background: #d6dbdc;
+
+}
+
+
+/* Custom page header */
+.title {
+	border-radius: 10px;
+    border-color: #9bcece;
+    border-style: outset;
+}
+h1 {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: calc(16px + (24-16)*(100vw-400px)/(800-400));
+  padding: 80px 50px;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+}
+/*elegantshadow modified from Juan Brujo http://codepen.io/juanbrujo/pen/yGpAK*/
+  .elegantshadow {
+    background: aliceblue;
+    margin-bottom: 10px;
+    margin-top: opx;
+    padding-bottom: 30px;
+    padding-top: 15px;
+    color: darkblue;
+    letter-spacing: .15em;
+    text-shadow:
+      1px -1px 0 #949392,
+      -1px 2px 1px #999897,
+      -2px 4px 1px #9e9c9c,
+      -3px 6px 1px #a3a1a1,
+      -4px 8px 1px #a8a6a6,
+      -5px 10px 1px #adabab,
+      -6px 12px 1px #b2b1b0,
+      -7px 14px 1px #b7b6b5,
+      -8px 16px 1px #bcbbba,
+      -9px 18px 1px #c1bfbf,
+      -10px 20px 1px #c6c4c4,
+      -11px 22px 1px #cbc9c8,
+      -12px 24px 1px #cfcdcd,
+      -13px 26px 1px #d4d2d1,
+      -14px 28px 1px #d8d6d5,
+      -15px 30px 1px #dbdad9,
+      -16px 32px 1px #dfdddc,
+      -17px 34px 1px #e2e0df,
+      -18px 36px 1px #e4e3e2;
+  }
+.inline {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.pictures {
+	margin: 20px;
+}
+
+.images {
+	height: 30px;
+	width: 30px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -15px;
+}
+
+.counter {
+	float: right;
+}
+
+.button {
+    display: inline-block;
+    margin: 10px;
+
+    -webkit-border-radius: 10px;
+
+    -webkit-box-shadow:
+        0px 3px rgba(128,128,128,1), /* gradient effects */
+        0px 4px rgba(118,118,118,1),
+        0px 5px rgba(108,108,108,1),
+        0px 6px rgba(98,98,98,1),
+        0px 7px rgba(88,88,88,1),
+        0px 8px rgba(78,78,78,1),
+        0px 14px 6px -1px rgba(128,128,128,1); /* shadow */
+
+    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
+}
+
+.button span {
+    background-color: #E8E8E8;
+
+    background-image:
+        /* gloss gradient */
+        -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(50%,rgba(255,255,255,0)),
+            color-stop(50%,rgba(255,255,255,0.3)),
+            color-stop(100%,rgba(255,255,255,0.2))),
+
+        /* dark outside gradient */
+        -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            color-stop(0%,rgba(210,210,210,0.3)),
+            color-stop(20%,rgba(210,210,210,0)),
+            color-stop(80%,rgba(210,210,210,0)),
+            color-stop(100%,rgba(210,210,210,0.3))),
+
+        /* light inner gradient */
+        -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            color-stop(0%,rgba(255,255,255,0)),
+            color-stop(20%,rgba(255,255,255,0.5)),
+            color-stop(80%,rgba(255,255,255,0.5)),
+            color-stop(100%,rgba(255,255,255,0))),
+
+        /* diagonal line pattern */
+        -webkit-gradient(
+            linear,
+            0% 100%,
+            100% 0%,
+            color-stop(0%,rgba(255,255,255,0)),
+            color-stop(40%,rgba(255,255,255,0)),
+            color-stop(40%,#D2D2D1),
+            color-stop(60%,#D2D2D1),
+            color-stop(60%,rgba(255,255,255,0)),
+            color-stop(100%,rgba(255,255,255,0)));
+
+        -webkit-box-shadow:
+            0px -1px #fff, /* top highlight */
+            0px 1px 1px #FFFFFF; /* bottom edge */
+
+    -webkit-background-size: 100%, 100%, 100%, 4px 4px;
+
+    -webkit-border-radius: 10px;
+    -webkit-transition: -webkit-transform .1s ease-in-out;
+
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+
+    color: #3A474D;
+    text-transform: uppercase;
+    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
+    font-weight: 700;
+
+    text-shadow: 0px 1px #fff, 0px -1px #262F33;
+}
+
+.button span:hover {
+    color: #AEBF3B;
+    text-shadow: 0px -1px #97A63A;
+    cursor: pointer;
+}
+
+.button:active {
+    -webkit-box-shadow:
+        0px 3px rgba(128,128,128,1),
+        0px 4px rgba(118,118,118,1),
+        0px 5px rgba(108,108,108,1),
+        0px 6px rgba(98,98,98,1),
+        0px 7px rgba(88,88,88,1),
+        0px 8px rgba(78,78,78,1),
+        0px 10px 2px 0px rgba(128,128,128,.6); /* shadow */
+}
+
+.button:active span{
+    -webkit-transform: translate(0, 5px); /* depth of button press */
+}
+
+
+
+
+.butt{
+	background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+	background-image: linear-gradient(top, #f4f1ee, #fff);
+	border-radius: 50%;
+	box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
+	float:left;
+	height: 70px;
+	margin: 0px;
+	position: relative;
+	width: 70px;
+	-webkit-transition: all .1s linear;
+	transition: all .1s linear;
+}
+
+.butt:after{
+	color:#e9e6e4;
+	content: "";
+	display: block;
+	font-size: 30px;
+	height: 30px;
+	text-decoration: none;
+	text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
+	position: absolute;
+	width: 30px;
+}
+
+.butt:hover{
+	background-image: -webkit-linear-gradient(top, #fff, #f4f1ee);
+	background-image: linear-gradient(top, #fff, #f4f1ee);
+	color:#0088cc;
+}
+
+.lookups:hover:after{
+	color:#f94e66;
+	text-shadow:0px 0px 6px #f94e66;
+}
+
+.butt:active{
+	background-image: -webkit-linear-gradient(top, #efedec, #f7f4f4);
+	background-image: linear-gradient(top, #efedec, #f7f4f4);
+	box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+}
+
+.butt:active:after{
+	color:#dbd2d2;
+	text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
+}
