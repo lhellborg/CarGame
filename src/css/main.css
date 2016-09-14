@@ -1,6 +1,6 @@
 body {
 	max-width: 100%;
-	background: #d6dbdc;
+	background: #efeff1;
 
 }
 
@@ -24,30 +24,23 @@ h1 {
     background: aliceblue;
     margin-bottom: 10px;
     margin-top: opx;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     padding-top: 15px;
     color: darkblue;
     letter-spacing: .15em;
     text-shadow:
-      1px -1px 0 #949392,
-      -1px 2px 1px #999897,
-      -2px 4px 1px #9e9c9c,
-      -3px 6px 1px #a3a1a1,
-      -4px 8px 1px #a8a6a6,
-      -5px 10px 1px #adabab,
-      -6px 12px 1px #b2b1b0,
-      -7px 14px 1px #b7b6b5,
-      -8px 16px 1px #bcbbba,
-      -9px 18px 1px #c1bfbf,
-      -10px 20px 1px #c6c4c4,
-      -11px 22px 1px #cbc9c8,
-      -12px 24px 1px #cfcdcd,
-      -13px 26px 1px #d4d2d1,
-      -14px 28px 1px #d8d6d5,
-      -15px 30px 1px #dbdad9,
-      -16px 32px 1px #dfdddc,
-      -17px 34px 1px #e2e0df,
-      -18px 36px 1px #e4e3e2;
+      1px -1px 0px #b7b6b5,
+      -1px 2px 1px #bcbbba,
+      -2px 4px 1px #c1bfbf,
+      -3px 6px 1px #c6c4c4,
+      -4px 8px 1px #cbc9c8,
+      -5px 10px 1px #cfcdcd,
+      -6px 12px 1px #d4d2d1,
+      -7px 14px 1px #d8d6d5,
+      -8px 16px 1px #dbdad9,
+      -9px 18px 1px #dfdddc,
+      -10px 20px 1px #e2e0df,
+      -11px 22px 1px #e4e3e2;
   }
 .inline {
 	display: flex;
@@ -70,7 +63,24 @@ h1 {
 }
 
 .counter {
-	float: right;
+	text-align: center;
+	position: relative;
+	font-size: 20px;
+}
+
+.scoreNr:hover {
+	font-size: 20px;
+	animation-name: scores;
+    animation-duration: 2s;
+}
+
+/* The animation code */
+@keyframes scores {
+    0%   {font-size: 20px;}
+    25%  {font-size: 40px;}
+    50%  {font-size: 20px;}
+    75%  {font-size: 40px;}
+    100% {font-size: 20px;}
 }
 
 .button {
@@ -183,7 +193,7 @@ h1 {
 .butt{
 	background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
 	background-image: linear-gradient(top, #f4f1ee, #fff);
-	border-radius: 50%;
+	border-radius: 10%;
 	box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
 	float:left;
 	height: 70px;
@@ -226,4 +236,28 @@ h1 {
 .butt:active:after{
 	color:#dbd2d2;
 	text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
+}
+
+.butt {
+    /* Firefox */
+	-moz-transition: all 1s ease;
+	/* WebKit */
+	-webkit-transition: all 1s ease;
+	/* Opera */
+	-o-transition: all 1s ease;
+	/* Standard */
+	transition: all 1s ease;
+}
+
+/*animation code*/
+.butt:hover {
+	/* Firefox */
+	-moz-transform: scale(0) rotateY(180deg) translate(0px);
+	/* WebKit */
+	-webkit-transform: scale(0) rotateY(180deg) translate(0px);
+	/* Opera */
+	-o-transform: scale(0) rotateY(180deg) translate(0px);
+	/* Standard */
+	transform: scale(0) rotateY(180deg) translate(0px);
+	z-index: 1000;
 }

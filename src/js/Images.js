@@ -17,7 +17,7 @@ const AppComponent = React.createClass({
     },
 
     shuffle: function(input) {
-        var newArray = []
+        var newArray = [input.length]
         for (var i = input.length-1; i >=0; i--) {
 
             var randomIndex = Math.floor(Math.random()*(i+1));
@@ -58,10 +58,11 @@ const AppComponent = React.createClass({
 
         return (
             <div>
-                <Counter scores={this.state.scores} />
-                <GameBoard threePic={this.threePic} sixPic={this.sixPic} reset={this.reset}>
+
+                <GameBoard threePic={this.threePic} sixPic={this.sixPic} reset={this.reset} scores={this.state.scores}>
                     {children}
                 </GameBoard>
+
             </div>
 
         );
@@ -81,6 +82,7 @@ const GameBoard = React.createClass({
                 </div>
 
                 <Button onClick={this.props.reset} text="Reset scores" />
+                <Counter scores={this.props.scores} />
             </div>
         );
     }
@@ -118,7 +120,12 @@ const Counter = React.createClass({
     render: function() {
         return (
             <div className="counter">
-                {"Scores: " + this.props.scores}
+                <div className="scoreName">
+                    {"Scores: "}
+                </div>
+                <div className="scoreNr">
+                    {this.props.scores}
+                </div>
             </div>
         )
 
