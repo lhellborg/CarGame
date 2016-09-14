@@ -5,32 +5,41 @@ var availableCards = AllCards;
 const AppComponent = React.createClass({
 
     threePic: function() {
+        var shuffledCards = this.shuffle();
         this.setState({
-            cards: [1,2,3]
+            cards: shuffledCards.slice(0,3)
         });
     },
 
     sixPic: function() {
+        var shuffledCards = this.shuffle();
         this.setState({
-            cards: [1,2,3,4,5,6]
+            cards: shuffledCards.slice(0,6),
+            nextCard: 6,
         });
     },
 
-    shuffle: function(input) {
-        var newArray = [input.length]
+    shuffle: function() {
+        var input = availableCards.slice(0);
         for (var i = input.length-1; i >=0; i--) {
 
             var randomIndex = Math.floor(Math.random()*(i+1));
-            newArray[i] = input[randomIndex];
+            var itemAtIndex = input[randomIndex];
+
+            input[randomIndex] = input[i];
+            input[i] = itemAtIndex;
+
         }
-        return newArray;
+        return input;
     },
 
     getInitialState: function() {
-        const shuffledCards = this.shuffle(availableCards);
+
+        var shuffledCards = this.shuffle();
         return {
             scores: 0,
-            cards: shuffledCards
+            cards: shuffledCards.slice(0,4),
+            nextCard: 4
         };
     },
 
