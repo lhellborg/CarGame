@@ -7,15 +7,20 @@ const AppComponent = React.createClass({
     threePic: function() {
         var shuffledCards = this.shuffle();
         this.setState({
-            cards: shuffledCards.slice(0,3)
+            scores: 0,
+            cards: shuffledCards.slice(0,3),
+            nextCard: 3,
+            key: 0
         });
     },
 
     sixPic: function() {
         var shuffledCards = this.shuffle();
         this.setState({
+            scores: 0,
             cards: shuffledCards.slice(0,6),
             nextCard: 6,
+            key: 0
         });
     },
 
@@ -37,9 +42,11 @@ const AppComponent = React.createClass({
 
         var shuffledCards = this.shuffle();
         return {
+            shuffledCards: shuffledCards,
             scores: 0,
-            cards: shuffledCards.slice(0,4),
-            nextCard: 4
+            cards: shuffledCards.slice(0,5),
+            nextCard: 5,
+            key: 0
         };
     },
 
@@ -49,19 +56,29 @@ const AppComponent = React.createClass({
         });
     },
 
-    checked: function(number) {
+    checked: function(index) {
 
-        //change picture to random picture plus add score
+            //nextCard should not exceed the length of the shuffledCards
+        if (this.state.nextCard > (this.state.shuffledCards.length-1)) {
+            //start over on the shuffled cards
+            this.state.nextCard = 0;
+        }
+
+        this.state.cards[index] = this.state.shuffledCards[this.state.nextCard]
+
+
+        //change picture to nextCard picture plus add score
         this.setState({
-            //cards.remove[indexOf(number)]
-            //number: Math.floor(Math.random() * (7)) + 1
+            cards: this.state.cards,
+            nextCard: this.state.nextCard + 1,
             scores: this.state.scores + 1
         });
     },
 
     render: function() {
-        const children = this.state.cards.map(card => {
-            return <Picture key={card.key} number={card.key} checked={this.checked} />
+        const children = this.state.cards.map((card, index) => {
+            this.state.key = this.state.key + 1
+            return <Picture key={this.state.key} checked={this.checked} index={index} image={card.image}/>
         });
 
 
@@ -109,14 +126,14 @@ const Button = React.createClass({
 
 const Picture = React.createClass({
     clicked: function() {
-        this.props.checked(this.props.number)
+        this.props.checked(this.props.index)
     },
 
     render: function() {
         return (
             <div className="pictures">
-                <a href="#" className="butt">
-                    <img src={'./images/favicon' + this.props.number +'.ico'} alt="picture" onClick={this.clicked} className="img-responsive images lookups"/>
+                <a href="#" className="butt" onClick={this.clicked} >
+                    <img src={this.props.image} alt="picture" className="img-responsive images lookups"/>
                 </a>
 
             </div>
@@ -138,6 +155,17 @@ const Counter = React.createClass({
             </div>
         )
 
+    }
+})
+
+const GameOver = React.createClass({
+
+    render: function() {
+        return (
+            <div className="gameover">
+                GameOver
+            </div>
+            )
     }
 })
 

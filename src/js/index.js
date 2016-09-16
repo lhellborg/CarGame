@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import Game from './Images.js';
+import Game from './GameBoard.js';
 
 
 

@@ -2,9 +2,7 @@ body {
 	max-width: 400px;
 	background: #efeff1;
     margin: 0 auto;
-
 }
-
 
 /* Custom page header */
 .title {
@@ -54,13 +52,13 @@ h1 {
 }
 
 .images {
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
 	position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -15px;
-    margin-left: -15px;
+    margin-top: -20px;
+    margin-left: -20px;
 }
 
 .counter {
@@ -201,8 +199,6 @@ h1 {
 	margin: 0px;
 	position: relative;
 	width: 70px;
-	-webkit-transition: all .1s linear;
-	transition: all .1s linear;
 }
 
 .butt:after{
@@ -261,4 +257,17 @@ h1 {
 	/* Standard */
 	transform: scale(0) rotateY(180deg) translate(0px);
 	z-index: 1000;
+}
+
+#footer {
+    font-size: 10px;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #9e9e9e;
+    color: #333;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
 }
