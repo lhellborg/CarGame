@@ -4,6 +4,19 @@ var availableCards = AllCards;
 
 const AppComponent = React.createClass({
 
+    getInitialState: function() {
+
+        var shuffledCards = this.shuffle();
+        return {
+            shuffledCards: shuffledCards,
+            scores: 0,
+            cards: shuffledCards.slice(0,5),
+            nextCard: 5,
+            key: 0,
+            timeLeft: 0
+        };
+    },
+
     threePic: function() {
         var shuffledCards = this.shuffle();
         this.setState({
@@ -38,18 +51,6 @@ const AppComponent = React.createClass({
         return input;
     },
 
-    getInitialState: function() {
-
-        var shuffledCards = this.shuffle();
-        return {
-            shuffledCards: shuffledCards,
-            scores: 0,
-            cards: shuffledCards.slice(0,5),
-            nextCard: 5,
-            key: 0
-        };
-    },
-
     reset: function() {
         this.setState({
             scores: 0
@@ -75,6 +76,24 @@ const AppComponent = React.createClass({
         });
     },
 
+    startTime: function() {
+        this.setState({
+            timeLeft: 900
+        })
+
+        var func = () => {
+            this.setState({
+                timeLeft: this.state.timeLeft-1
+            })
+            setTimeout(func,1000);
+        };
+
+        setTimeout(func, 1000);
+
+
+    },
+
+
     render: function() {
         const children = this.state.cards.map((card, index) => {
             this.state.key = this.state.key + 1
@@ -85,7 +104,7 @@ const AppComponent = React.createClass({
         return (
             <div>
 
-                <GameBoard threePic={this.threePic} sixPic={this.sixPic} reset={this.reset} scores={this.state.scores}>
+                <GameBoard threePic={this.threePic} sixPic={this.sixPic} reset={this.reset} scores={this.state.scores} startTime={this.startTime} timeLeft={this.state.timeLeft}>
                     {children}
                 </GameBoard>
 
@@ -109,6 +128,8 @@ const GameBoard = React.createClass({
 
                 <Button onClick={this.props.reset} text="Reset scores" />
                 <Counter scores={this.props.scores} />
+                <Button onClick={this.props.startTime} text="Start timer" />
+                <Timer timeLeft={this.props.timeLeft} />
             </div>
         );
     }
@@ -155,6 +176,17 @@ const Counter = React.createClass({
             </div>
         )
 
+    }
+})
+
+const Timer = React.createClass({
+
+    render: function() {
+        return (
+            <div className="timer">
+                {"Time left: " + this.props.timeLeft + "s"}
+            </div>
+        )
     }
 })
 

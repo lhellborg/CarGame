@@ -6,9 +6,9 @@ body {
 
 /* Custom page header */
 .title {
-	border-radius: 10px;
-    border-color: #9bcece;
-    border-style: outset;
+    border-bottom: #504e4e;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
@@ -20,7 +20,8 @@ h1 {
 }
 /*elegantshadow modified from Juan Brujo http://codepen.io/juanbrujo/pen/yGpAK*/
   .elegantshadow {
-    background: aliceblue;
+    background: #c3c3cc;
+    margin-top: 0;
     margin-bottom: 10px;
     margin-top: opx;
     padding-bottom: 20px;
@@ -61,7 +62,8 @@ h1 {
     margin-left: -20px;
 }
 
-.counter {
+.counter,
+.timer {
 	text-align: center;
 	position: relative;
 	font-size: 20px;
@@ -157,7 +159,7 @@ h1 {
     display: inline-block;
     padding: 10px 20px 10px 20px;
 
-    color: #3A474D;
+    color: #bdbdbd;
     text-transform: uppercase;
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
@@ -235,29 +237,15 @@ h1 {
 	text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
 }
 
-.butt {
-    /* Firefox */
-	-moz-transition: all 1s ease;
-	/* WebKit */
-	-webkit-transition: all 1s ease;
-	/* Opera */
-	-o-transition: all 1s ease;
-	/* Standard */
+/*.butt {
 	transition: all 1s ease;
-}
+}*/
 
 /*animation code*/
-.butt:hover {
-	/* Firefox */
-	-moz-transform: scale(0) rotateY(180deg) translate(0px);
-	/* WebKit */
-	-webkit-transform: scale(0) rotateY(180deg) translate(0px);
-	/* Opera */
-	-o-transform: scale(0) rotateY(180deg) translate(0px);
-	/* Standard */
+/*.butt:hover {
 	transform: scale(0) rotateY(180deg) translate(0px);
 	z-index: 1000;
-}
+}*/
 
 #footer {
     font-size: 10px;
