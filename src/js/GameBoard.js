@@ -13,7 +13,7 @@ const AppComponent = React.createClass({
             cards: shuffledCards.slice(0,5),
             nextCard: 5,
             key: 0,
-            timeLeft: 0
+            timeLeft: 900
         };
     },
 
@@ -23,7 +23,8 @@ const AppComponent = React.createClass({
             scores: 0,
             cards: shuffledCards.slice(0,3),
             nextCard: 3,
-            key: 0
+            key: 0,
+            timeLeft: 900
         });
     },
 
@@ -33,8 +34,13 @@ const AppComponent = React.createClass({
             scores: 0,
             cards: shuffledCards.slice(0,6),
             nextCard: 6,
-            key: 0
+            key: 0,
+            timeLeft: 900
         });
+    },
+
+    exchangeCard: function() {
+        console.log("which card do you want to exchange")
     },
 
     shuffle: function() {
@@ -77,20 +83,33 @@ const AppComponent = React.createClass({
     },
 
     startTime: function() {
-        this.setState({
-            timeLeft: 900
-        })
+        if (this.state.timeLeft > 0 && this.state.timeLeft < 900) {
+            clearTimeout(this.timeout1)
+            this.setState({
+                timeLeft: 900
+            });
+        };
+
 
         var func = () => {
             this.setState({
                 timeLeft: this.state.timeLeft-1
             })
-            setTimeout(func,1000);
+            this.timeout1 = setTimeout(func,1000);
         };
 
-        setTimeout(func, 1000);
+        this.timeout = setTimeout(func, 1000);
 
 
+    },
+
+    endTime: function() {
+        if (this.state.timeLeft > 0 && this.state.timeLeft < 900) {
+            clearTimeout(this.timeout1)
+            this.setState({
+                timeLeft: this.state.timeLeft
+            });
+        };
     },
 
 
@@ -104,7 +123,7 @@ const AppComponent = React.createClass({
         return (
             <div>
 
-                <GameBoard threePic={this.threePic} sixPic={this.sixPic} reset={this.reset} scores={this.state.scores} startTime={this.startTime} timeLeft={this.state.timeLeft}>
+                <GameBoard threePic={this.threePic} sixPic={this.sixPic} exchangeCard={this.exchangeCard} reset={this.reset} scores={this.state.scores} startTime={this.startTime} endTime={this.endTime} timeLeft={this.state.timeLeft}>
                     {children}
                 </GameBoard>
 
@@ -119,9 +138,11 @@ const GameBoard = React.createClass({
     render: function() {
        return(
             <div>
-                <Button onClick={this.props.threePic} text="3 Pictures" />
-                <Button onClick={this.props.sixPic} text="6 Pictures" />
-
+                <div className="topButtons">
+                    <Button onClick={this.props.threePic} text="3 Pictures" />
+                    <Button onClick={this.props.sixPic} text="6 Pictures" />
+                    <Button onClick={this.props.exchangeCard} text="Change 1" />
+                </div>
                 <div id="children-pane" className="inline">
                   {this.props.children}
                 </div>
@@ -129,7 +150,9 @@ const GameBoard = React.createClass({
                 <Button onClick={this.props.reset} text="Reset scores" />
                 <Counter scores={this.props.scores} />
                 <Button onClick={this.props.startTime} text="Start timer" />
+                <Button onClick={this.props.endTime} text="stop timer" className="floatRight"/>
                 <Timer timeLeft={this.props.timeLeft} />
+
             </div>
         );
     }
@@ -137,8 +160,13 @@ const GameBoard = React.createClass({
 
 const Button = React.createClass({
     render: function() {
+        var myClass = "button "
+        if (this.props.className) {
+            myClass += this.props.className
+        }
+
         return (
-            <a className="button" onClick={this.props.onClick}>
+            <a className={myClass} onClick={this.props.onClick}>
                 <span>{this.props.text}</span>
             </a>
         )
@@ -183,9 +211,14 @@ const Timer = React.createClass({
 
     render: function() {
         return (
-            <div className="timer">
-                {"Time left: " + this.props.timeLeft + "s"}
-            </div>
+            <div>
+                <div className="timer">
+                    {"Time left: "}
+                </div>
+                <div className="timer">
+                    {this.props.timeLeft + "s"}
+                </div>
+           </div>
         )
     }
 })
