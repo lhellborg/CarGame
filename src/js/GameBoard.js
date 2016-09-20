@@ -40,6 +40,9 @@ const AppComponent = React.createClass({
     },
 
     exchangeCard: function() {
+        this.setState({
+            // change one card to the next in the cards
+        })
         console.log("which card do you want to exchange")
     },
 
