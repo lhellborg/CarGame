@@ -17,3 +17,8 @@ Use the `CHANGE1` button to change one card and get a -1 score.
 `START TIMER` start the countdown of the timer. 
 `STOP TIMER` stop the timer.
 
+###Add to your home screen iOS device
+Launch the `Safari` browser on Apple’s iOS and navigate to the website or web page you want to add to your home screen. Tap the `Share` button on the browser’s toolbar — that’s the *rectangle with an arrow pointing upward*. It’s on the bar at the top of the screen on an iPad, and on the bar at the bottom of the screen on an iPhone or iPod Touch. Tap the Add to Home Screen icon in the Share menu that's the *rectangle with a + sign* in.
+
+###Add to your home screen Android
+Launch `Chrome` for Android and open the website or web page you want to pin to your home screen. Tap the `menu` button and tap `Add to homescreen`. You’ll be able to enter a name for the shortcut and then Chrome will add it to your home screen.
