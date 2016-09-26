@@ -1,7 +1,7 @@
 // register a service worker
 if ('serviceWorker' in navigator) {
     // register a serviceworker
-    navigator.serviceWorker.register('/serWor.js', {
+    navigator.serviceWorker.register('/serviceWor.js', {
         scope: '/'
     }).then(function(registration) {
         'use strict';
@@ -17,14 +17,6 @@ if ('serviceWorker' in navigator) {
         }
         console.log('registered a service worker with scope: ', registration.scope);
 
-        // push notifications
-        registration.pushManager.subscribe({
-            userVisibleOnly: true
-        }).then(function(sub) {
-            console.log('endpoint:', sub.endpoint);
-        }).catch(function(e) {
-            console.log("error", e);
-        });
     }).catch(function(err) {
         'use strict';
         console.log('serviceWorker not registered: ', err);

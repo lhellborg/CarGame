@@ -13,6 +13,7 @@ var babelify = require('babelify');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var browserSync = require('browser-sync');
 
 
 // Lint Task
@@ -24,7 +25,7 @@ gulp.task('lint', function() {
 
 // Compile Our Sass
 gulp.task('sass', function() {
-    return gulp.src('./src/scss/*.scss')
+    return gulp.src('./src/css/*.css')
         .pipe(sass())
         .pipe(gulp.dest('dist/css'));
 });
@@ -39,7 +40,29 @@ gulp.task('build', function() {
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('extras', () => {
+  return gulp.src([
+    'src/*.*',
+    'src/js/main.js'
+    ], {
+    dot: true
+  }).pipe(gulp.dest('dist'));
+});
+
+gulp.task('images', () => {
+  return gulp.src('src/images/**/*')
+    // .pipe($.cache($.imagemin({
+    //   progressive: true,
+    //   interlaced: true,
+    //   // don't remove IDs from SVGs, they are often used
+    //   // as hooks for embedding and styling
+    //   svgoPlugins: [{cleanupIDs: false}]
+    // })))
+    .pipe(gulp.dest('dist/images'));
 });
 
 // Concatenate & Minify JS
@@ -55,7 +78,18 @@ gulp.task('scripts', function() {
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch('./src/js/*.js', ['lint', 'build']);
+    gulp.watch('./src/*.html', ['extras']);
     gulp.watch('./src/scss/*.scss', ['sass']);
+});
+
+  gulp.task('serve:dist', () => {
+  browserSync({
+    notify: false,
+    port: 9099,
+    server: {
+      baseDir: ['dist']
+    }
+  });
 });
 
 // run a local webserver with LiveReload
@@ -70,3 +104,6 @@ gulp.task('webserver', function() {
 
 // Default Task
 gulp.task('default', ['lint', 'sass', 'build', 'watch']);
+
+// Default Task
+gulp.task('todist', ['images', 'sass', 'extras', 'build']);

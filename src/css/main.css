@@ -85,6 +85,23 @@ h1 {
     100% {font-size: 20px;}
 }
 
+.center {
+    text-align: center;
+}
+
+.gameover {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.gameoverText {
+    animation-name: scores;
+    animation-duration: 4s;
+    animation-iteration-count: 2;
+}
+
+
+
 .button {
     display: inline-block;
     margin: 10px;
@@ -260,3 +277,4 @@ h1 {
     color: #333;
     text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
 }
+

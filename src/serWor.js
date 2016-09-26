@@ -8,10 +8,8 @@ self.addEventListener('install', function(event) {
         caches.open(staticCacheName).then(function(cache) {
             return cache.addAll([
                 '/',
-                'js/AllCards.js',
-                'js/GameBoard.js',
-                'js/index.js',
-                'js/main.js',
+                'js/app.js',
+                '/main.js',
                 'css/main.css',
                 '/favicon.ico',
                 '/favicon-16x16.png',

@@ -39,12 +39,38 @@ const AppComponent = React.createClass({
         });
     },
 
-    exchangeCard: function() {
-        this.setState({
-            // change one card to the next in the cards
-        })
-        console.log("which card do you want to exchange")
+    getRandomIntInclusive: function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     },
+
+    exchangeCard: function() {
+
+            //nextCard should not exceed the length of the shuffledCards
+        if (this.state.nextCard > (this.state.shuffledCards.length-1)) {
+            //start over on the shuffled cards
+            this.state.nextCard = 0;
+        }
+
+        let maxCard = this.state.cards.length-1;
+        //replace the existing cards on the board 
+        let randomCard = this.getRandomIntInclusive(0,maxCard);
+
+
+        this.state.cards[randomCard] = this.state.shuffledCards[this.state.nextCard]
+
+
+        //change picture to nextCard picture plus add score
+        this.setState({
+            cards: this.state.cards,
+            nextCard: this.state.nextCard + 1,
+            scores: this.state.scores - 1
+        });
+
+
+    },
+
 
     shuffle: function() {
         var input = availableCards.slice(0);
@@ -86,7 +112,7 @@ const AppComponent = React.createClass({
     },
 
     startTime: function() {
-        if (this.state.timeLeft > 0 && this.state.timeLeft < 900) {
+        if (this.state.timeLeft < 900) {
             clearTimeout(this.timeout1)
             this.setState({
                 timeLeft: 900
@@ -98,7 +124,12 @@ const AppComponent = React.createClass({
             this.setState({
                 timeLeft: this.state.timeLeft-1
             })
-            this.timeout1 = setTimeout(func,1000);
+            if (this.state.timeLeft > 0) {
+                this.timeout1 = setTimeout(func,1000);
+            } else {
+                clearTimeout(this.timeout1);
+            }
+
         };
 
         this.timeout = setTimeout(func, 1000);
@@ -107,7 +138,7 @@ const AppComponent = React.createClass({
     },
 
     endTime: function() {
-        if (this.state.timeLeft > 0 && this.state.timeLeft < 900) {
+        if (this.state.timeLeft < 900) {
             clearTimeout(this.timeout1)
             this.setState({
                 timeLeft: this.state.timeLeft
@@ -117,22 +148,29 @@ const AppComponent = React.createClass({
 
 
     render: function() {
-        const children = this.state.cards.map((card, index) => {
-            this.state.key = this.state.key + 1
-            return <Picture key={this.state.key} checked={this.checked} index={index} image={card.image}/>
-        });
 
+        if (this.state.timeLeft == 0) {
+            return (
+                <GameOver threePic={this.threePic} sixPic={this.sixPic}/>
+                )
+        } else {
 
-        return (
-            <div>
+            const children = this.state.cards.map((card, index) => {
+                this.state.key = this.state.key + 1
+                return <Picture key={this.state.key} checked={this.checked} index={index} image={card.image}/>
+            });
 
-                <GameBoard threePic={this.threePic} sixPic={this.sixPic} exchangeCard={this.exchangeCard} reset={this.reset} scores={this.state.scores} startTime={this.startTime} endTime={this.endTime} timeLeft={this.state.timeLeft}>
-                    {children}
-                </GameBoard>
+            return (
+                <div>
 
-            </div>
+                    <GameBoard threePic={this.threePic} sixPic={this.sixPic} exchangeCard={this.exchangeCard} reset={this.reset} scores={this.state.scores} startTime={this.startTime} endTime={this.endTime} timeLeft={this.state.timeLeft}>
+                        {children}
+                    </GameBoard>
 
-        );
+                </div>
+
+            );
+        }
     }
 });
 
@@ -169,7 +207,7 @@ const Button = React.createClass({
         }
 
         return (
-            <a className={myClass} onClick={this.props.onClick}>
+            <a className={myClass} onClick={this.props.onClick} tabIndex="0">
                 <span>{this.props.text}</span>
             </a>
         )
@@ -208,13 +246,18 @@ const Counter = React.createClass({
         )
 
     }
-})
+});
 
 const Timer = React.createClass({
 
     render: function() {
         return (
             <div>
+
+        <p><input type="button" id="watch" value="Start" /> count down from <input type="text" id="watch" size="2" value="10" /> seconds</p>
+
+        <div class="timer"></div><div class="timer fill"></div>
+
                 <div className="timer">
                     {"Time left: "}
                 </div>
@@ -224,18 +267,23 @@ const Timer = React.createClass({
            </div>
         )
     }
-})
+});
 
 const GameOver = React.createClass({
 
     render: function() {
         return (
-            <div className="gameover">
-                GameOver
+            <div >
+                <h1 className="gameoverText gameover">Time run out</h1>
+                <h1 className="gameover">Play again?</h1>
+                <div className="center">
+                    <Button onClick={this.props.threePic} text="3 Pictures" />
+                    <Button onClick={this.props.sixPic} text="6 Pictures" />
+                </div>
             </div>
             )
     }
-})
+});
 
 
 export default AppComponent;
