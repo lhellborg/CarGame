@@ -8,8 +8,8 @@ You can play it in many different ways:
 -Make up your own game and challenge the family.
 
 ##Buttons
-`3PICTURES` 3 different cards and score will be set to 0
-`6PICTURES` 6 different cards and score will be set to 0
+`3PICTURES` 3 different cards and score will be set to 0.
+`6PICTURES` 6 different cards and score will be set to 0.
 
 Use the `CHANGE1` button to change one card and get a -1 score.
 
@@ -22,3 +22,10 @@ Launch the `Safari` browser on Apple’s iOS and navigate to the website or web 
 
 ###Add to your home screen Android
 Launch `Chrome` for Android and open the website or web page you want to pin to your home screen. Tap the `menu` button and tap `Add to homescreen`. You’ll be able to enter a name for the shortcut and then Chrome will add it to your home screen.
+
+###How to build
+From the `src` code:
+- download `package.json`, `gulpfile.js`and the `src` folder and put in a _directory_ of your choice on your computer
+- direct yourself to _the directory_ that you choosed in the terminal and run `npm install`. This will create a file `node-modules`in your directory with the files you need to run `gulp`.
+- run `gulp todist`, which will _minify_ all of the **css and js** files and put them in a directory called `dist` in the correct folders. It will also copy all the other files to their correct destinations.
+- run `gulp serve` to run from the `app` directory or `gulp serve:dist` to run from the compressed and minified dist directory. This will run the Public transportation app on localhost port 9099. 
