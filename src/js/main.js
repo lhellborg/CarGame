@@ -1,7 +1,7 @@
 // register a service worker
 if ('serviceWorker' in navigator) {
     // register a serviceworker
-    navigator.serviceWorker.register('/serWor.js', {
+    navigator.serviceWorker.register('./serWor.js', {
         scope: '/'
     }).then(function(registration) {
         'use strict';
