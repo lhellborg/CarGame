@@ -206,6 +206,13 @@ const GameBoard = React.createClass({
 });
 
 const Button = React.createClass({
+    keydown: function(e) {
+        var code = e.target.which;
+        if ((code===13) || (code===32)) {
+            this.props.onClick()
+        }
+    },
+
     render: function() {
         var myClass = "button "
         if (this.props.className) {
@@ -213,7 +220,7 @@ const Button = React.createClass({
         }
 
         return (
-            <a className={myClass} onClick={this.props.onClick} tabIndex="0">
+            <a href="#" className={myClass} onClick={this.props.onClick} onKeyDown={this.keydown} tabIndex="0">
                 <span>{this.props.text}</span>
             </a>
         )
